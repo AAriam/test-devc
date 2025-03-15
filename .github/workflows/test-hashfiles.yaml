@@ -13,5 +13,5 @@ jobs:
             ["Fig1.pdf", "Fig2.pdf"]
         run: |
           echo "${{ fromJSON(env.FJ) }}"
-          echo "${{ hashFiles(fromJSON(env.FJ)) }}"
+          echo "${{ hashFiles(fromJSON(env.FJ)[0], fromJSON(env.FJ)[1]) }}"
         
