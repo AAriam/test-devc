@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Base Repository Checkout
+        uses: actions/checkout@v4  # https://github.com/actions/checkout
+      - run: |
+          echo "${{ hashFiles('Fig1.pdf', 'Fig2.pdf') }}"
+      - env:
+          FJ: >-
+            ["Fig1.pdf", "Fig2.pdf"]
+        run: |
+          echo "${{ fromJSON(env.FJ) }}"
+          echo "${{ hashFiles(fromJSON(env.FJ)) }}"
+        
