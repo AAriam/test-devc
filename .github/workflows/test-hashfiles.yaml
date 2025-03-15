@@ -14,4 +14,10 @@ jobs:
         run: |
           echo "${{ fromJSON(env.FJ) }}"
           echo "${{ hashFiles(fromJSON(env.FJ)[0], fromJSON(env.FJ)[1]) }}"
+          for item in $(echo "${{ env.FJ }}" | jq -r '.[]'); do
+            echo "Processing item: $item"
+            echo "${{ hashFiles(env.item) }}"
+            echo "${{ hashFiles(item) }}"
+            echo "${{ hashFiles($item) }}"
+          done
         
